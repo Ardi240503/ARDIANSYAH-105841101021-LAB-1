@@ -10,9 +10,9 @@ const App = () => {
     <SafeAreaView style={{ flex: 1 }}>
       <Login /> {/* Menggunakan komponen Login */}
       {/* <SignUP /> */}
-      {/* <ForgotPassword /> */}
+      {/* <forgotPassword /> */}
     </SafeAreaView>
   );
 }
 
-export default SignUp;
+export default ForgotPassword;
