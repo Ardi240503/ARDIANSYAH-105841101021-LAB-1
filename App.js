@@ -15,4 +15,4 @@ const App = () => {
   );
 }
 
-export default Login;
+export default SignUp;
