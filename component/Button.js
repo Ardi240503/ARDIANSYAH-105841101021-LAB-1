@@ -1,20 +1,32 @@
-const ButtonComponent = ({backgroundColor,text})=>{
-    return(
-        <view style={{
-            backgroundColor: backgroundColor,width: 150, height:70,
-            borderRadius:10,
-            marginLeft: 10
-        }}>
-            <text style={{
-                color: 'white',
-                textAlign: 'center',
-                lineHeight:70,
-                fontSize:25,
-                fontWeight:'bold',
+import React from 'react';
+import { View, Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-            }}>
-                {text}
-            </text>
-        </view>        
+
+const ButtonComponent = ({backgroundColor, text}) => {
+    return (
+        <SafeAreaView>
+        <View style={{
+            backgroundColor: backgroundColor,
+            borderRadius: 25,
+            width: 343,
+            height: 48,
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginLeft: 20,
+            marginBottom: 100
+        }}>
+  
+        <Text style={{
+            color: 'white',
+            fontSize: 14,
+            lineHeight: 20
+        }}>
+            {text}
+        </Text>
+    </View>
+    </SafeAreaView>
     )
-}
+  }
+  
+export default ButtonComponent;
