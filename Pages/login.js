@@ -1,24 +1,23 @@
 import React from 'react';
 import { View } from 'react-native';
 import {SafeAreaView } from 'react-native-safe-area-context';
-import Headline from './component/Title';
-import InputText from './component/InputText';
-import ButtonComponent from './component/Button';
-import Konfirmasi from './component/Confirmation';
-import IconButton from './component/IconButton';
+import Headline from '../component/Title';
+import InputText from '../component/InputText';
+import ButtonComponent from '../component/Button';
+import Konfirmasi from '../component/Confirmation';
+import IconButton from '../component/IconButton';
 
-const SignUp = () => {
+const Login = () => {
     return (
         <SafeAreaView>
             <View>
               <View style={{
                 marginBottom: 50,
               }}>
-                <Headline text="Sign up" />
+                <Headline text="Login" />
               </View>
 
             <View style={{}}>
-                <InputText placeholder="Name" />
                 <InputText placeholder="Email" />
                 <InputText placeholder="Password" />
             </View>
@@ -27,19 +26,19 @@ const SignUp = () => {
                 marginTop: 10,
                 marginLeft: 150,
             }}>
-                <Konfirmasi text="Already have an account?" fontSize={14} />
+                <Konfirmasi text="Forgot your password?" />
             </View>
 
             <View style={{
                 marginTop: 40,
             }}>
-            <ButtonComponent backgroundColor="#FF0000" text="SIGN UP" />
+            <ButtonComponent backgroundColor="#FF0000" text="LOGIN" />
             </View>
 
             <View style={{
-                marginTop: 95
+                marginTop: 150
             }}>
-                <Konfirmasi text="Or sign up with social account" fontSize={14} />
+                <Konfirmasi text="Or login with social account" />
             </View>
 
             <View style={{
@@ -60,4 +59,4 @@ const SignUp = () => {
     )
 }
 
-export default SignUp;
+export default Login;

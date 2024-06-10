@@ -1,34 +1,42 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { useFonts } from 'expo-font'
-const App = () => {
-  
-  const [fontsLoaded, fontError] = useFonts({
-    'Metro-Bold': require('./assets/fonts/Metropolis-Bold.otf'),
-    'Metro-Medium': require('./assets/fonts/Metropolis-Medium.otf'),
-    'Metro-Semibold': require('./assets/fonts/Metropolis-SemiBold.otf'),
-    'Metro-Black': require('./assets/fonts/Metropolis-Black.otf'),
+// In App.js in a new project
 
+import * as React from 'react';
+import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Login from './Pages/login'
+import SignUp from './Pages/SignUp';
+import ForgotPassword from './Pages/ForgetPassword';
+import { Button } from 'react-native';
 
-  });
-      if (!fontsLoaded) return 
-      <View>
-          <Text>Font tidak ditemukan !</Text>
-      </View>
-
+function HomeScreen({navigation}) {
   return (
-      <View style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-        <Text style={{ fontSize: 30}}>Font-Biasa</Text>
-        <Text style={{ fontFamily: 'Metro-Bold', fontSize: 30 }}>Metro Bold</Text>
-        <Text style={{ fontFamily: 'Metro-Medium', fontSize: 30 }}>Metro Medium</Text>
-        <Text style={{ fontFamily: 'Metro-Semibold', fontSize: 30 }}>Metro SemiBold</Text>
-        <Text style={{ fontFamily: 'Metro-Black', fontSize: 30 }}>Metro Black</Text>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Home Screen</Text>
 
-      </View>
-    )
+      <Button
+      title="Login"
+      onPress={() => navigation.navigate('Login')}
+
+       />
+
+    </View>
+  );
 }
-export default App
+
+const Stack = createNativeStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="Forgot Password" component={ForgotPassword} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;

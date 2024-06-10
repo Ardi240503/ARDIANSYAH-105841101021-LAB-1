@@ -1,12 +1,24 @@
-import React from "react";
-import { Text } from "react-native";
+import React from 'react';
+import { View, Text } from 'react-native';
 
 const Teks = () => {
   return (
-    <Text style={{ fontSize: 20, color: 'black' }}>
-      Selamat Datang
-    </Text>
+    <View style={{
+      backgroundColor: 'white',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}>
+      <Text style={{
+        color: 'black',
+        textAlign: 'center',
+        fontSize: 24,
+        fontWeight: 'bold',
+        margin: 50,
+      }}>
+        Travel App
+      </Text>
+    </View>
   );
-};
+}
 
-export default Teks;
+export default Teks;
