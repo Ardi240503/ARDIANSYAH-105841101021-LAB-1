@@ -1,12 +1,14 @@
 import React from 'react';
 import { View } from 'react-native';
 import {SafeAreaView } from 'react-native-safe-area-context';
-import Headline from '../component/Title';
+import Title from '../component/Title';
 import InputText from '../component/InputText';
-import ButtonComponent from '../component/Button';
-import Konfirmasi from '../component/Confirmation';
+import Button from '../component/Button';
+import Confirmation from '../component/Confirmation';
+
 
 const ForgotPassword = () => {
+
     return (
         <SafeAreaView>
             <View>
@@ -27,13 +29,14 @@ const ForgotPassword = () => {
             </View>
 
             <View style={{
-                marginTop: 5
+                marginTop: -30,
+
             }}>
                 <Konfirmasi text="Not a valid email address. Should be your@email.com" color="red" fontSize={11} />
             </View>
 
             <View style={{
-                marginTop: 40,
+                marginTop: 20,
             }}>
             <ButtonComponent backgroundColor="#FF0000" text="SEND" />
             </View>
