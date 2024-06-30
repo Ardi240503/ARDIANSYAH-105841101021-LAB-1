@@ -1,18 +1,19 @@
+
 import React from 'react';
 import { View, TouchableOpacity, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
-import Title from '../component/Title';
-import InputText from '../component/InputText';
+import Headline from '../component/Headline';
+import InputText from '../component/Input-text';
 import ButtonComponent from '../component/Button';
-import Confirmation from '../component/Confirmation';
-import IconButton from '../component/IconButton';
+import Konfirmasi from '../component/Konfirmasi';
+import IconButton from '../component/Icon-Button';
 
 
 const Login = () => {
     const navigation = useNavigation();
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{ flex: 1 }}>
             <View>
                 <View style={{
                     marginBottom: 50,
@@ -31,7 +32,7 @@ const Login = () => {
                 }}>
                     <TouchableOpacity onPress={() => navigation.navigate("Forgot Password")}>
                         <Konfirmasi text="Forgot your password?" />
-                        <Image source={require("../assets/visual.jpeg")} style=
+                        <Image source={require('../assets/round-arrow_right_alt-24px.png')} style=
                         {{
                             marginLeft: 210,
                             marginTop: -24.5, 
@@ -40,7 +41,9 @@ const Login = () => {
                 </View>
 
                 <View style={{}}>
+                    <TouchableOpacity onPress={() => navigation.navigate("MyTabs")}>
                     <ButtonComponent backgroundColor="#FF0000" text="LOGIN" />
+                    </TouchableOpacity>
                 </View>
 
                 <View style={{

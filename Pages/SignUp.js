@@ -2,17 +2,17 @@ import React from 'react';
 import { View, TouchableOpacity, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
-import Title from '../component/Title';
-import InputText from '../component/InputText';
+import Headline from '../component/Headline';
+import InputText from '../component/Input-text';
 import ButtonComponent from '../component/Button';
-import Confirmation from '../component/Confirmation';
-import IconButton from '../component/IconButton';
+import Konfirmasi from '../component/Konfirmasi';
+import IconButton from '../component/Icon-Button';
 
 
 const SignUp = () => {
     const navigation = useNavigation();
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{ flex: 1 }}>
             <View>
                 <View style={{
                     marginBottom: 50,
@@ -32,7 +32,7 @@ const SignUp = () => {
                 }}>
                     <TouchableOpacity onPress={() => navigation.navigate("Login")}>
                         <Konfirmasi text="Already have an account?" fontSize={14} />
-                        <Image source={require('../assets/visual.jpeg')} style=
+                        <Image source={require('../assets/round-arrow_right_alt-24px.png')} style=
                         {{
                             marginLeft: 240,
                             marginTop: -24.5, 
@@ -42,9 +42,9 @@ const SignUp = () => {
 
 
                 <View style={{ marginTop: 5 }}>
-                   
+               
                         <ButtonComponent backgroundColor="#FF0000" text="SIGN UP" />
-                  
+                     
                 </View>
 
 
