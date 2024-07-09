@@ -1,10 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
 import {SafeAreaView } from 'react-native-safe-area-context';
-import Title from '../component/Title';
+import Headline from '../component/Headline';
 import InputText from '../component/InputText';
-import Button from '../component/Button';
-import Confirmation from '../component/Confirmation';
+import ButtonComponent from '../component/Button';
+import Konfirmasi from '../component/Confirmation';
 
 
 const ForgotPassword = () => {

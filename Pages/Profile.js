@@ -46,7 +46,7 @@ const ProfileScreen = () => {
             <View style={styles.profileHeader}>
                 <Text style={styles.profileTitle}>My profile</Text>
                 <View style={styles.profileInfo}>
-                    <Image source={require('../assets/Faisal.jpeg')} style={styles.profileImage} />
+                    <Image source={require('../assets/ARDI.png')} style={styles.profileImage} />
                     <View>
                         <Text style={styles.profileName}>Ahmad Faisal</Text>
                         <Text style={styles.profileEmail}>Ahmadfaisal@gmail.com</Text>

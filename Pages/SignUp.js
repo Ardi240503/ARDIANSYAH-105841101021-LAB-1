@@ -3,10 +3,10 @@ import { View, TouchableOpacity, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import Headline from '../component/Headline';
-import InputText from '../component/Input-text';
+import InputText from '../component/InputText';
 import ButtonComponent from '../component/Button';
-import Konfirmasi from '../component/Konfirmasi';
-import IconButton from '../component/Icon-Button';
+import Konfirmasi from '../component/Confirmation';
+import IconButton from '../component/IconButton';
 
 
 const SignUp = () => {
@@ -32,7 +32,7 @@ const SignUp = () => {
                 }}>
                     <TouchableOpacity onPress={() => navigation.navigate("Login")}>
                         <Konfirmasi text="Already have an account?" fontSize={14} />
-                        <Image source={require('../assets/round-arrow_right_alt-24px.png')} style=
+                        <Image source={require('../assets/round-arrow_right_alt-24px.jpeg')} style=
                         {{
                             marginLeft: 240,
                             marginTop: -24.5, 
