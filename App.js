@@ -1,112 +1,128 @@
-import * as React from 'react';
-import { View, Text, Button, Image, StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { StyleSheet, Text, View, TextInput, Button, Image } from 'react-native';
+import React, { useState } from 'react';
+import axios from 'axios';
 
-import HomeAktif from './assets/icon/home-activated.jpeg';
-import HomeNonAktif from './assets/icon/home-inactive.jpeg';
-import ShopAktif from './assets/icon/shop-activated.jpeg';
-import ShopNonAktif from './assets/icon/shop-inactive.jpeg';
-import BagAktif from './assets/icon/bag-activated.jpeg';
-import BagNonAktif from './assets/icon/bag-inactive.jpeg';
-import FavoritesAktif from './assets/icon/favorites-activated.jpeg';
-import FavoritesNonAktif from './assets/icon/favorites-inactive.jpeg';
-import ProfilAktif from './assets/icon/profil-activated.jpeg';
-import ProfilNonAktif from './assets/icon/profil-inactive.jpeg';
+const LoginSimak = () => {
+  const [data, setData] = useState({
+    nim: '',
+    password: ''
+  });
+  const [userData, setUserData] = useState(null);
+  const [error, setError] = useState('');
 
-import Login from './Pages/Login'; 
-import SignUp from './Pages/SignUp';
-import ForgotPassword from './Pages/ForgetPassword';
-import VisualSearch from './Pages/VisualSearch';
-import Shop from './Pages/Shop';
-import Bag from './Pages/Bag';
-import Favorites from './Pages/Favorites';
-import Profile from './Pages/Profile';
+  const onSubmit = () => {
+    axios.post('https://api.beasiswa.unismuh.ac.id/api/login', {
+      username: data.nim,
+      password: data.password
+    })
+      .then(response => {
+        if (response.status === 200) {
+          setUserData(response.data.data);
+          setError('');
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        setError('Ada kesalahan. Silahkan cek kembali nim dan password anda.');
+        setUserData(null);
+      });
+  }
 
-const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
-
-function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text>Masih Tahap Pengembangan</Text>
-      <Button
-        title="Sign Up"
-        onPress={() => navigation.navigate('SignUp')}
-      />
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          onChangeText={(value) => setData({ ...data, nim: value })}
+          placeholder="Nim"
+          placeholderTextColor="#aaa"
+        />
+        <TextInput
+          style={styles.input}
+          onChangeText={(value) => setData({ ...data, password: value })}
+          placeholder="Password"
+          placeholderTextColor="#aaa"
+          secureTextEntry
+        />
+        <Button title="Login" onPress={onSubmit} />
+        {error ? <Text style={styles.errorText}>{error}</Text> : null}
+      </View>
+      {userData && (
+        <View style={styles.userDataContainer}>
+          <Text style={styles.userDataText}>ID: {userData.id}</Text>
+          <Text style={styles.userDataText}>Username: {userData.username}</Text>
+          <Text style={styles.userDataText}>Name: {userData.nama}</Text>
+          <Text style={styles.userDataText}>Role: {userData.role}</Text>
+          <Image
+            style={styles.userImage}
+            source={{ uri: `https://simakad.unismuh.ac.id/upload/mahasiswa/${userData.username}.jpg` }}
+          />
+        </View>
+      )}
     </View>
   );
 }
 
-function MyTabs() {
-  return (
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused }) => {
-          let iconName;
-
-          switch (route.name) {
-            case 'Home':
-              iconName = focused ? HomeAktif : HomeNonAktif;
-              break;
-            case 'Shop':
-              iconName = focused ? ShopAktif : ShopNonAktif;
-              break;
-            case 'Bag':
-              iconName = focused ? BagAktif : BagNonAktif;
-              break;
-            case 'Favorites':
-              iconName = focused ? FavoritesAktif : FavoritesNonAktif;
-              break;
-            case 'Profile':
-              iconName = focused ? ProfilAktif : ProfilNonAktif;
-              break;
-          }
-
-          return <Image source={iconName} style={styles.icon} />;
-        },
-        headerShown: false,
-      })}
-    >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Shop" component={Shop} />
-      <Tab.Screen name="Bag" component={Bag} />
-      <Tab.Screen name="Favorites" component={Favorites} />
-      <Tab.Screen name="Profile" component={Profile} />
-    </Tab.Navigator>
-  );
-}
-
-function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="MyTabs">
-        <Stack.Screen name="MyTabs" component={MyTabs} options={{ headerShown: false }} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Login" component={Login} /> 
-        <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-        <Stack.Screen name="VisualSearch" component={VisualSearch} />
-        <Stack.Screen name="Shop" component={Shop} />
-        <Stack.Screen name="Bag" component={Bag} />
-        <Stack.Screen name="Favorites" component={Favorites} />
-        <Stack.Screen name="Profile" component={Profile} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
+export default LoginSimak;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f5f5f5',
+    padding: 20,
   },
-  icon: {
-    width: 24,
-    height: 24,
+  inputContainer: {
+    width: '100%',
+    maxWidth: 400,
+    padding: 20,
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+    marginBottom: 20,
+  },
+  input: {
+    height: 50,
+    borderColor: '#ddd',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 20,
+    paddingHorizontal: 10,
+    fontSize: 16,
+    color: '#333',
+  },
+  errorText: {
+    color: 'red',
+    marginTop: 10,
+    textAlign: 'center',
+  },
+  userDataContainer: {
+    width: '100%',
+    maxWidth: 400,
+    padding: 20,
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+    alignItems: 'center',
+  },
+  userDataText: {
+    fontSize: 16,
+    color: '#333',
+    marginBottom: 5,
+  },
+  userImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginTop: 10,
   },
 });
-
-export default App;
