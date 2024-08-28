@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const data = [
     { id: '1', title: 'My orders', subtitle: 'Already have 12 orders' },
@@ -12,17 +13,8 @@ const data = [
     { id: '6', title: 'Settings', subtitle: 'Notifications, password' }
 ];
 
-const ProfileItem = ({ title, subtitle }) => (
-    <TouchableOpacity style={styles.item}>
-        <View>
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.subtitle}>{subtitle}</Text>
-        </View>
-        <Image source={require('../assets/icon/right-icon.png')} style={styles.itemArrow} />
-    </TouchableOpacity>
-);
-
 const ProfileScreen = () => {
+
     const [fontsLoaded] = useFonts({
         'Bold': require('../assets/fonts/Metropolis-Bold.otf'),
         'Medium': require('../assets/fonts/Metropolis-Medium.otf'),
@@ -48,14 +40,22 @@ const ProfileScreen = () => {
                 <View style={styles.profileInfo}>
                     <Image source={require('../assets/ARDI.png')} style={styles.profileImage} />
                     <View>
-                        <Text style={styles.profileName}>Ahmad Faisal</Text>
-                        <Text style={styles.profileEmail}>Ahmadfaisal@gmail.com</Text>
+                        <Text style={styles.profileName}>PUTRA KAJANG</Text>
+                        <Text style={styles.profileEmail}>ardikajang259@gmail.com</Text>
                     </View>
                 </View>
             </View>
             <FlatList
                 data={data}
-                renderItem={({ item }) => <ProfileItem title={item.title} subtitle={item.subtitle} />}
+                renderItem={({ item }) => (
+                    <TouchableOpacity style={styles.item}>
+                        <View>
+                            <Text style={styles.title}>{item.title}</Text>
+                            <Text style={styles.subtitle}>{item.subtitle}</Text>
+                        </View>
+                        <Image source={require('../assets/icon/right-icon.png')} style={styles.itemArrow} />
+                    </TouchableOpacity>
+                )}
                 keyExtractor={item => item.id}
                 style={styles.list}
             />
@@ -74,10 +74,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 20,
         paddingTop: 10,
-
-    },
-    time: {
-        fontSize: 18,
     },
     searchIcon: {
         width: 24,
@@ -88,7 +84,7 @@ const styles = StyleSheet.create({
         paddingTop: 20,
     },
     profileTitle: {
-        fontSize: 28,
+        fontSize: 30,
         fontFamily: 'Bold',
     },
     profileInfo: {
@@ -135,6 +131,10 @@ const styles = StyleSheet.create({
     itemArrow: {
         width: 24,
         height: 24,
+    },
+    errorText: {
+        fontSize: 16,
+        color: 'red',
     },
 });
 

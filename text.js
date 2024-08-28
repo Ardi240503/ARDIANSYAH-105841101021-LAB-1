@@ -21,4 +21,4 @@ const Teks = () => {
   );
 }
 
-export default Teks;
+export default Teks;
